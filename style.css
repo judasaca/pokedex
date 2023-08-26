@@ -1,5 +1,6 @@
 body {
   display: flex;
+  justify-content: center;
 }
 #grid-container {
   display: grid;
@@ -11,9 +12,16 @@ body {
   /* width: 50vw; */
 }
 .grid-element {
-  height: 20px;
-  width: 20px;
+  height: auto;
+  width: 10vw;
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   background-color: rgba(254, 129, 129, 0.8);
+}
+.pokemon-image {
+  width: 100%;
+  height: auto;
+}
+.pokemon-name {
+  text-align: center;
 }
