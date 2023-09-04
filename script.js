@@ -37,8 +37,10 @@ class Card {
     this.html_element.appendChild(type_list_container);
   }
   addClickInteraction() {
-    this.html_element.addEventListener("click", () => {
-      if (!this.clicked) {
+    this.html_element.addEventListener("click", (e) => {
+      if (!this.clicked && !e.target.classList.contains("close-button-img")) {
+        console.log(this.clicked, "opening");
+        console.log(e.target);
         this.html_element.classList.add("open-card");
         this.clicked = true;
       }
@@ -48,12 +50,13 @@ class Card {
     const close_button = document.createElement("div");
     close_button.classList.add("close-button-container");
     const image = document.createElement("img");
+    image.classList.add("close-button-img");
     image.src = "images/close-button.svg";
     close_button.appendChild(image);
     close_button.addEventListener("click", () => {
-      console.log("entrando2");
+      console.log("closing");
       this.html_element.classList.remove("open-card");
-      this.clicked = true;
+      this.clicked = false;
     });
     this.html_element.appendChild(close_button);
   }
@@ -65,9 +68,9 @@ class Card {
     card.addName();
     card.addImage();
     card.addTypeList();
-    card.addCloseButton();
     card.addToDoom();
     card.addClickInteraction();
+    card.addCloseButton();
   }
 }
 
