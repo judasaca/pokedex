@@ -17,9 +17,11 @@ body {
   padding: 10px;
   /* width: 50vw; */
 }
+.grid-element-container {
+  width: 15vw;
+}
 .grid-element {
   height: auto;
-  width: 15vw;
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 10px;
   background-color: #5d737e;
@@ -29,6 +31,8 @@ body {
 .pokemon-image {
   width: 100%;
   height: auto;
+  background: rgb(141, 141, 141);
+  border: solid var(--border-color) 1px;
 }
 
 .pokemon-name {
@@ -51,7 +55,20 @@ ul {
   list-style: none;
   padding-left: 10px;
 }
-img {
-  background: rgb(141, 141, 141);
-  border: solid var(--border-color) 1px;
+
+.open-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.close-button-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  display: none;
+}
+.open-card > .close-button-container {
+  display: block;
 }

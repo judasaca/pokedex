@@ -5,9 +5,12 @@ class Card {
     this.pokemon_name = pokemon_data.name;
     this.pokemon_image_url = pokemon_data.ThumbnailImage;
     this.pokemon_type_list = pokemon_data.type;
+    this.html_container = document.createElement("div");
+    this.html_container.classList.add("grid-element-container");
     this.html_element = document.createElement("div");
     this.html_element.classList.add("grid-element");
-    document.querySelector("#grid-container").appendChild(this.html_element);
+    this.html_container.appendChild(this.html_element);
+    this.clicked = false;
   }
   addName() {
     const name = document.createElement("div");
@@ -33,15 +36,38 @@ class Card {
     type_list_container.appendChild(type_list);
     this.html_element.appendChild(type_list_container);
   }
+  addClickInteraction() {
+    this.html_element.addEventListener("click", () => {
+      if (!this.clicked) {
+        this.html_element.classList.add("open-card");
+        this.clicked = true;
+      }
+    });
+  }
+  addCloseButton() {
+    const close_button = document.createElement("div");
+    close_button.classList.add("close-button-container");
+    const image = document.createElement("img");
+    image.src = "images/close-button.svg";
+    close_button.appendChild(image);
+    close_button.addEventListener("click", () => {
+      console.log("entrando2");
+      this.html_element.classList.remove("open-card");
+      this.clicked = true;
+    });
+    this.html_element.appendChild(close_button);
+  }
   addToDoom() {
-    document.querySelector("#grid-container").appendChild(this.html_element);
+    document.querySelector("#grid-container").appendChild(this.html_container);
   }
   static build(pokemon_data) {
     const card = new Card(pokemon_data);
     card.addName();
     card.addImage();
     card.addTypeList();
+    card.addCloseButton();
     card.addToDoom();
+    card.addClickInteraction();
   }
 }
 
