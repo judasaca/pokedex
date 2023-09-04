@@ -27,6 +27,7 @@ body {
   background-color: #5d737e;
   border-radius: 3px;
   border: var(--border-color) solid 2px;
+  cursor: pointer;
 }
 .pokemon-image {
   width: 100%;
@@ -61,6 +62,7 @@ ul {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  cursor: auto;
 }
 .close-button-container {
   position: absolute;
@@ -68,6 +70,7 @@ ul {
   right: 5px;
   width: 20px;
   display: none;
+  cursor: pointer;
 }
 .open-card > .close-button-container {
   display: block;
