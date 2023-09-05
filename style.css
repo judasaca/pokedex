@@ -6,7 +6,8 @@ html {
 }
 body {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 #grid-container {
   display: grid;
@@ -28,6 +29,9 @@ body {
   border-radius: 3px;
   border: var(--border-color) solid 2px;
   cursor: pointer;
+}
+.grid-element:hover {
+  scale: 1.03;
 }
 .pokemon-image {
   width: 100%;
@@ -67,6 +71,10 @@ ul {
   transform: translate(-50%, -50%);
   cursor: auto;
   width: 40vw;
+  z-index: 1000;
+}
+.open-card:hover {
+  scale: 1;
 }
 .close-button-container {
   position: absolute;
@@ -88,4 +96,36 @@ ul {
 .atribute-name {
   color: #ffef79;
   font-weight: 500;
+}
+
+.open-card > .pokemon-name {
+  text-align: center;
+  font-size: 30px;
+}
+#search-bar-container {
+  display: flex;
+  padding: 20px 0px;
+}
+.search-bar-icon-container {
+  background: white;
+  border-radius: 0px 10px 10px 0px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+#search-bar-container img {
+  height: 23px;
+  width: auto;
+}
+#search-bar {
+  width: 50vw;
+  height: 35px;
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 20px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+}
+#seach-bar:focus {
+  outline: none;
 }

@@ -15,6 +15,12 @@ class Card {
     this.html_container.appendChild(this.html_element);
     this.clicked = false;
   }
+  showCard() {
+    this.html_container.style.display = "block";
+  }
+  removeCard() {
+    this.html_container.style.display = "none";
+  }
   addName() {
     const name = document.createElement("div");
     name.innerHTML = this.pokemon_name;
@@ -91,6 +97,7 @@ class Card {
     card.addClickInteraction();
     card.addCloseButton();
     card.addExtraInfo();
+    return card;
   }
 }
 
@@ -102,6 +109,26 @@ class Pokedex {
     this.plain_data.forEach((pokemon) => {
       let card = Card.build(pokemon);
       this.cards.push(card);
+    });
+    this.search_bar = document.querySelector("#search-bar");
+    this.search_bar.addEventListener("input", () => {
+      for (let i = 0; i < this.cards.length; i++) {
+        const card = this.cards[i];
+        let input = this.search_bar.value.toLowerCase();
+        if (input === "") {
+          card.showCard();
+        } else {
+          try {
+            if (!!card.pokemon_name.toLowerCase().match(input)) {
+              card.showCard();
+            } else {
+              card.removeCard();
+            }
+          } catch (error) {
+            console.error(card);
+          }
+        }
+      }
     });
   }
 }
@@ -118,4 +145,4 @@ function filter_duplicates(arr) {
   }
   return elementos;
 }
-const p = new Pokedex(filter_duplicates(data).slice(0, 25));
+const p = new Pokedex(filter_duplicates(data));
