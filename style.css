@@ -51,6 +51,9 @@ body {
   font-size: 17px;
   font-weight: 400;
 }
+.type-list-container > div {
+  padding: 7px 5px;
+}
 ul {
   text-transform: capitalize;
   list-style: none;

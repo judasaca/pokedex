@@ -30,9 +30,9 @@ class Card {
   addTypeList() {
     const type_list_container = document.createElement("div");
     type_list_container.classList.add("type-list-container");
-    type_list_container.innerHTML = `<span class="atribute-name">Types: </span>${this.pokemon_type_list.join(
+    type_list_container.innerHTML = `<div><span class="atribute-name">Types: </span>${this.pokemon_type_list.join(
       " - "
-    )}`;
+    )}</div>`;
     // const type_list = document.createElement("ul");
     // this.pokemon_type_list.forEach((element) => {
     //   const li = document.createElement("li");
@@ -67,11 +67,11 @@ class Card {
     const extra_info_container = document.createElement("div");
     extra_info_container.innerHTML = `
     <div class="type-list-container">
-    <div><span class="atribute-name">weight:</span> ${this.pokemon_weight}</div>
-    <div><span class="atribute-name">weakness:</span> ${this.pokemon_weakness.join(
+    <div><span class="atribute-name">Weight:</span> ${this.pokemon_weight}</div>
+    <div><span class="atribute-name">Weakness:</span> ${this.pokemon_weakness.join(
       " - "
     )}</div>
-    <div><span class="atribute-name">abilities:</span> ${this.pokemon_abilities.join(
+    <div><span class="atribute-name">Abilities:</span> ${this.pokemon_abilities.join(
       " - "
     )}</div>
     </div>
@@ -105,4 +105,17 @@ class Pokedex {
     });
   }
 }
-const p = new Pokedex(data.slice(0, 25));
+
+function filter_duplicates(arr) {
+  let ids = [];
+  let elementos = [];
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    if (!ids.includes(element.id)) {
+      ids.push(element.id);
+      elementos.push(element);
+    }
+  }
+  return elementos;
+}
+const p = new Pokedex(filter_duplicates(data).slice(0, 25));
