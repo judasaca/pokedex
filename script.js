@@ -1,10 +1,13 @@
 import data from "./data.js";
 class Card {
   constructor(pokemon_data) {
-    this.pokemon_data = pokemon_data;
     this.pokemon_name = pokemon_data.name;
     this.pokemon_image_url = pokemon_data.ThumbnailImage;
     this.pokemon_type_list = pokemon_data.type;
+    this.pokemon_weight = pokemon_data.weight;
+    this.pokemon_weakness = pokemon_data.weakness;
+    this.pokemon_abilities = pokemon_data.abilities;
+
     this.html_container = document.createElement("div");
     this.html_container.classList.add("grid-element-container");
     this.html_element = document.createElement("div");
@@ -27,20 +30,21 @@ class Card {
   addTypeList() {
     const type_list_container = document.createElement("div");
     type_list_container.classList.add("type-list-container");
-    const type_list = document.createElement("ul");
-    this.pokemon_type_list.forEach((element) => {
-      const li = document.createElement("li");
-      li.innerHTML = element;
-      type_list.appendChild(li);
-    });
-    type_list_container.appendChild(type_list);
+    type_list_container.innerHTML = `<span class="atribute-name">Types: </span>${this.pokemon_type_list.join(
+      " - "
+    )}`;
+    // const type_list = document.createElement("ul");
+    // this.pokemon_type_list.forEach((element) => {
+    //   const li = document.createElement("li");
+    //   li.innerHTML = element;
+    //   type_list.appendChild(li);
+    // });
+    // type_list_container.appendChild(type_list);
     this.html_element.appendChild(type_list_container);
   }
   addClickInteraction() {
     this.html_element.addEventListener("click", (e) => {
       if (!this.clicked && !e.target.classList.contains("close-button-img")) {
-        console.log(this.clicked, "opening");
-        console.log(e.target);
         this.html_element.classList.add("open-card");
         this.clicked = true;
       }
@@ -54,11 +58,26 @@ class Card {
     image.src = "images/close-button.svg";
     close_button.appendChild(image);
     close_button.addEventListener("click", () => {
-      console.log("closing");
       this.html_element.classList.remove("open-card");
       this.clicked = false;
     });
     this.html_element.appendChild(close_button);
+  }
+  addExtraInfo() {
+    const extra_info_container = document.createElement("div");
+    extra_info_container.innerHTML = `
+    <div class="type-list-container">
+    <div><span class="atribute-name">weight:</span> ${this.pokemon_weight}</div>
+    <div><span class="atribute-name">weakness:</span> ${this.pokemon_weakness.join(
+      " - "
+    )}</div>
+    <div><span class="atribute-name">abilities:</span> ${this.pokemon_abilities.join(
+      " - "
+    )}</div>
+    </div>
+    `;
+    extra_info_container.classList.add("extra-info");
+    this.html_element.appendChild(extra_info_container);
   }
   addToDoom() {
     document.querySelector("#grid-container").appendChild(this.html_container);
@@ -71,6 +90,7 @@ class Card {
     card.addToDoom();
     card.addClickInteraction();
     card.addCloseButton();
+    card.addExtraInfo();
   }
 }
 

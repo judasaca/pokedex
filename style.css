@@ -63,6 +63,7 @@ ul {
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: auto;
+  width: 40vw;
 }
 .close-button-container {
   position: absolute;
@@ -74,4 +75,14 @@ ul {
 }
 .open-card > .close-button-container {
   display: block;
+}
+.extra-info {
+  display: none;
+}
+.open-card > .extra-info {
+  display: block;
+}
+.atribute-name {
+  color: #ffef79;
+  font-weight: 500;
 }
