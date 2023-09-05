@@ -71,6 +71,7 @@ ul {
   transform: translate(-50%, -50%);
   cursor: auto;
   width: 40vw;
+  max-width: 500px;
   z-index: 1000;
 }
 .open-card:hover {
